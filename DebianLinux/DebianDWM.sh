@@ -3,9 +3,9 @@
 # Xorg Display Server Setup
 sudo apt install -y xorg xserver-xorg xbacklight xbindkeys xvkbd xinput
 
-# Build Essential Package
-sudo apt install -y build-essential
-sudo apt install -y flatpak timeshift
+# build-essential flatpak and timeshift
+sudo apt install -y build-essential flatpak timeshift
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 # Create folders in user directory (eg. Documents,Downloads,etc.)
 xdg-user-dirs-update
@@ -17,7 +17,7 @@ sudo apt install -y intel-microcode
 # Network Manager
 sudo apt install -y network-manager-gnome
 
-# Installation for Appearance management
+# Installation for Appearance management GTK and QT
 sudo apt install -y lxappearance 
 
 # File Manager (eg. pcmanfm,krusader)
@@ -34,10 +34,11 @@ sudo apt install -y kitty
 
 # Sound packages
 #sudo apt install -y pulseaudio alsa-utils pavucontrol volumeicon-alsa
-sudo apt install
+sudo apt install -y pipewire-audio wireplumber pipewire-pulse pipewire-alsa libspa-0.2-bluetooth
+systemctl --user --now enable wireplumber.service
 
-# Neofetch/HTOP
-sudo apt install -y neofetch htop
+# Neofetch and btop
+sudo apt install -y neofetch btop
 
 # EXA or LSD Installation
 # replace ls command in .bashrc file with line below
@@ -62,7 +63,7 @@ sudo apt install -y feh
 # sudo apt install -y nitrogen 
 
 # Packages needed dwm after installation
-sudo apt install -y picom numlockx rofi dunst libnotify-bin unzip policykit-1-gnome scrot mousepad
+sudo apt install -y picom numlockx rofi dunst libnotify-bin unzip policykit-1-gnome flameshot mousepad
 
 # Command line text editor -- nano preinstalled  -- I like micro but vim is great
 # sudo apt install -y micro
@@ -115,7 +116,7 @@ sudo apt install -y libx11-dev
 
 # Move install directory, make, and install
 cd ~/.config/suckless
-tools=( "dwm" "dmenu" "st" "slstatus" "slock" "tabbed" )
+tools=( "dwm" "dmenu" "st" "slstatus" "slock")
 for tool in ${tools[@]}
 do 
 	git clone git://git.suckless.org/$tool
@@ -125,7 +126,32 @@ done
 
 
 # Install Nerd Fonts
-source ~/dwm-debian/nerdfonts.sh
+sudo apt install unzip -y
+
+mkdir -p ~/.local/share/fonts
+
+cd /tmp
+fonts=( 
+"CascadiaCode"
+"FiraCode"  
+"Hack"  
+"Inconsolata"
+"Iosevka" 
+"JetBrainsMono" 
+"Meslo"
+"Mononoki" 
+"RobotoMono" 
+"SourceCodePro" 
+"UbuntuMono"
+)
+
+for font in ${fonts[@]}
+do
+    wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/$font.zip
+	unzip $font.zip -d $HOME/.local/share/fonts/$font/
+    rm $font.zip
+done
+fc-cache
 
 sudo apt autoremove
 
