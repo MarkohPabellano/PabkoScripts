@@ -1,3 +1,5 @@
+# Using the VoidLinuxInstaller Follow the Packages
+
 
 https://github.com/Le0xFF/VoidLinuxInstaller
 xbps-install -Suvy xbps
@@ -5,8 +7,8 @@ sudo xbps-install void-repo-nonfree void-repo-multilib void-repo-multilib-nonfre
 xbps-install -Sun
 xbps-install xorg xinit git make neofetch htop pipewire kitty noto-fonts-cjk bash-completion rofi
 xbps-install -S base-devel libX11-devel libXft-devel libXinerama-devel fontconfig-devel freetype-devel 
-xbps-install iwd blueman bluez network-manager-applet Thunar neovim
-xbps-install  noto-fonts-emoji noto-fonts-ttf noto-fonts-ttf-extra flatpak python3 python3-pip fileroller
+xbps-install iwd blueman bluez network-manager-applet Thunar neovim libspa-bluetooth bluez-alsa CopyQ
+xbps-install  noto-fonts-emoji noto-fonts-ttf noto-fonts-ttf-extra flatpak python3 python3-pip python3-mypy xarchiver rofi-emoji 
 
 
 xbps-install fcitx fcitx-mozc fcitx-configtool libfcitx-gtk3 libfcitx-gtk libfcitx fcitx-libpinyin
@@ -20,9 +22,8 @@ https://youtu.be/jcIhOGxSEiI?si=CUO3nOezFithWQuF
 https://ivonblog.com/posts/install-void-linux/
 https://www.youtube.com/watch?v=iKKAHWPMr10
 
-xbps-install pavucontrol sxhkd stow lsd flameshot feh pywal  mtpfs gvfs-mtp gvfs-gphoto2 slock android-tools
-
-xbps-install pipewire alsa-utils wireplumber pulseaudio pipewire-pulse
+xbps-install pavucontrol sxhkd stow lsd flameshot feh pywal  mtpfs gvfs-mtp gvfs-gphoto2 slock android-tools redshift
+xbps-install pipewire alsa-utils wireplumber pulseaudio pipewire-pulse bluez-alsa
 xbps-install vulkan-loader mesa-vulkan-intel intel-video-accel 
 
 mkdir -p /etc/alsa/conf.d
@@ -43,9 +44,11 @@ sudo usermod -a -G network audio video marks
 
 stow --adopt -nvt ~ *
 /etc/bash
-if [-f "$HOME" /.config/bash/.bash_profile ]; then
+if [ -f "$HOME" /.config/bash/.bash_profile ]; then
         . "$HOME"/.config/bash/.bash_profile
 fi
+
+
 
 
 
@@ -85,7 +88,7 @@ ln -s /etc/sv/virtlogd /var/service
 ln -s /etc/sv/polkitd /var/service/
 
 oobee\BypassNRO
-
+python3-mypy
 export $(dbus-launch in /etc/profile to make it work lmao
 
 touchpad setup
@@ -129,3 +132,12 @@ sudo dd if=/dev/zero of=/directory of swap bs=1G count=4
 sudo mkswap /directory of swap
 sudo swapon /direcotry of swap
 grep SwapTotal /proc/meminfo -- get the amount of swap file
+
+sudo xbps-install ufw gufw bleachbit
+
+https://youtu.be/uL2FgJLzmCo?si=pwlGS070RHjkSGFs
+
+libvirt apparmor error
+sudo rm -rf /etc/apparmor.d/libvirt
+sudo vim /etc/libvirt/qemu.conf
+security_driver = "none"
