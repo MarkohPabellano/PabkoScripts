@@ -5,10 +5,10 @@ https://github.com/Le0xFF/VoidLinuxInstaller
 xbps-install -Suvy xbps
 sudo xbps-install void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree
 xbps-install -Sun
-xbps-install xorg xinit git make neofetch htop pipewire kitty noto-fonts-cjk bash-completion rofi
+xbps-install xorg xinit git make fastfetch htop pipewire kitty noto-fonts-cjk bash-completion rofi
 xbps-install -S base-devel libX11-devel libXft-devel libXinerama-devel fontconfig-devel freetype-devel 
-xbps-install iwd blueman bluez network-manager-applet Thunar neovim libspa-bluetooth bluez-alsa CopyQ
-xbps-install  noto-fonts-emoji noto-fonts-ttf noto-fonts-ttf-extra flatpak python3 python3-pip python3-mypy xarchiver rofi-emoji 
+xbps-install iwd blueman bluez network-manager-applet Thunar neovim libspa-bluetooth bluez-alsa CopyQ ffmpeg yt-dlp
+xbps-install  noto-fonts-emoji noto-fonts-ttf noto-fonts-ttf-extra flatpak python3 python3-pip python3-mypy xarchiver rofi-emoji pasystry
 
 
 xbps-install fcitx fcitx-mozc fcitx-configtool libfcitx-gtk3 libfcitx-gtk libfcitx fcitx-libpinyin
@@ -141,3 +141,5 @@ libvirt apparmor error
 sudo rm -rf /etc/apparmor.d/libvirt
 sudo vim /etc/libvirt/qemu.conf
 security_driver = "none"
+
+https://itsfoss.com/flatpak-app-apply-theme/
